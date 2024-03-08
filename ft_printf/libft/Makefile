@@ -3,14 +3,15 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+         #
+#    By: juramos <juramos@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/15 16:43:25 by juramos           #+#    #+#              #
-#    Updated: 2023/12/07 10:59:15 by juramos          ###   ########.fr        #
+#    Updated: 2024/02/26 13:47:48 by juramos          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libft.a
+B_NAME = libftbonus.a
 CC = gcc
 INCLUDE = ../include
 CFLAGS = -Wall -Werror -Wextra -I
@@ -43,12 +44,16 @@ WHITE = \033[0;97m
 
 all: $(NAME)
 
-bonus: $(OBJ) $(BONUS_OBJ)
-	@ar rc $(NAME) $?
+bonus: $(B_NAME)
 
 $(NAME): $(OBJ)
 	@ar rcs $(NAME) $?
 	@echo "$(YELLOW)libft compiled!$(DEF_COLOR)"
+
+$(B_NAME): $(BONUS_OBJ)
+	@ar rcs $(B_NAME) $?
+	@ar rcs $(NAME) $?
+	@echo "$(YELLOW)libft bonus compiled!$(DEF_COLOR)"
 
 %.o: %.c
 	@$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
@@ -57,7 +62,7 @@ clean:
 	@rm -f $(OBJ) $(BONUS_OBJ)
 
 fclean: clean
-	@rm -f $(NAME)
+	@rm -f $(NAME) $(B_NAME)
 
 re: fclean all
 
