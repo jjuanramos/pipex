@@ -3,10 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+        */
+/*   By: juramos <juramos@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 12:49:59 by juramos           #+#    #+#             */
-/*   Updated: 2024/02/23 12:50:00 by juramos          ###   ########.fr       */
+/*   Updated: 2024/03/11 11:18:34 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+void	leaks(void)
+{
+	system("leaks -q pipex");
+}
+
+int	main(void)
+{
+	atexit(leaks);
+	return (0);
+}
