@@ -6,7 +6,7 @@
 /*   By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 10:35:27 by juramos           #+#    #+#             */
-/*   Updated: 2024/02/23 13:13:34 by juramos          ###   ########.fr       */
+/*   Updated: 2024/03/19 11:26:20 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,5 +16,7 @@
 # include "include/ft_printf.h"
 # include "include/libft.h"
 # include <unistd.h>
+# include <errno.h>
+# include <string.h>
 
 #endif
