@@ -1,25 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.h                                            :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/21 10:35:27 by juramos           #+#    #+#             */
-/*   Updated: 2024/03/19 12:22:56 by juramos          ###   ########.fr       */
+/*   Created: 2024/03/19 12:17:12 by juramos           #+#    #+#             */
+/*   Updated: 2024/03/20 11:05:38 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PIPEX_H
-# define PIPEX_H
+#include "pipex.h"
 
-# include "include/ft_printf.h"
-# include "include/libft.h"
-# include <unistd.h>
-# include <errno.h>
-# include <string.h>
-
-/* utils */
-void	print_and_exit(char *co, char *ar, char *err, int exitcode);
-
-#endif
+void	send_to_stderr(char *co, char *ar, char *err)
+{
+	ft_putstr_fd("pipex: ", 2);
+	ft_putendl_fd(co, 2);
+	ft_putstr_fd(": ", 2);
+	if (ar)
+	{
+		ft_putendl_fd(ar, 2);
+		ft_putstr_fd(": ", 2);
+	}
+	ft_putendl_fd(err, 2);
+}
