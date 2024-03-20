@@ -6,7 +6,7 @@
 /*   By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 12:49:59 by juramos           #+#    #+#             */
-/*   Updated: 2024/03/20 12:53:46 by juramos          ###   ########.fr       */
+/*   Updated: 2024/03/20 13:10:30 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,19 @@ void	child_process(char **argv, int *p_fd, char **envp)
 
 void	parent_process(char **argv, int *p_fd, char **envp)
 {
-	int	fd;
+	int		fd;
+	char	**cmd_s;
+	char	*path;
 
+	cmd_s = ft_split(argv[3], ' ');
+	path = get_path(cmd_s[0], envp);
+	if (!path)
+	{
+		send_to_stderr(cmd_s[0], NULL, strerror(errno));
+		free_split(cmd_s);
+		exit(1);
+	}
+	free_split(cmd_s);
 	fd = open_file(argv[4], 1);
 	if (fd == -1)
 		exit(1);
@@ -66,6 +77,7 @@ int	main(int argc, char *argv[], char *envp[])
 	int		p_fd[2];
 	pid_t	pid;
 
+	atexit(leaks);
 	if (argc != 5)
 	{
 		ft_putstr_fd("./pipex ar1 co1 co2 ar2\n", 2);
