@@ -6,7 +6,7 @@
 /*   By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 12:49:59 by juramos           #+#    #+#             */
-/*   Updated: 2024/03/20 11:08:32 by juramos          ###   ########.fr       */
+/*   Updated: 2024/03/20 12:53:46 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,18 +17,7 @@ void	leaks(void)
 	system("leaks -q pipex");
 }
 
-int	open_file(char *name, int to_write)
-{
-	int	ret;
-
-	if (to_write == 0)
-		ret = open(name, O_RDONLY, 777);
-	if (to_write == 1)
-		ret = open(name, O_WRONLY | O_CREAT | O_TRUNC, 777);
-	return (ret);
-}
-
-void	exec_process(char *cmd, char *env)
+void	exec_process(char *cmd, char **env)
 {
 	char	**cmd_s;
 	char	*path;
@@ -89,6 +78,7 @@ int	main(int argc, char *argv[], char *envp[])
 		exit(1);
 	if (pid == 0)
 		child_process(argv, p_fd, envp);
+	waitpid(pid, NULL, 0);
 	parent_process(argv, p_fd, envp);
 	return (0);
 }

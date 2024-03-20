@@ -6,7 +6,7 @@
 /*   By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 10:35:27 by juramos           #+#    #+#             */
-/*   Updated: 2024/03/19 12:22:56 by juramos          ###   ########.fr       */
+/*   Updated: 2024/03/20 12:13:16 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,14 @@
 # include <unistd.h>
 # include <errno.h>
 # include <string.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+#include <sys/wait.h>
 
 /* utils */
-void	print_and_exit(char *co, char *ar, char *err, int exitcode);
+void	send_to_stderr(char *co, char *ar, char *err);
+void	free_split(char **arr);
+int		open_file(char *name, int to_write);
+char	*get_path(char *cmd, char **env);
 
 #endif
