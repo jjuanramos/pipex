@@ -6,7 +6,7 @@
 /*   By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 12:17:12 by juramos           #+#    #+#             */
-/*   Updated: 2024/03/20 13:05:47 by juramos          ###   ########.fr       */
+/*   Updated: 2024/03/21 12:46:24 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,20 @@ void	send_to_stderr(char *co, char *ar, char *err)
 {
 	char	**tmp;
 
-	tmp = ft_split(co, ' ');
 	ft_putstr_fd("pipex: ", 2);
-	ft_putstr_fd(tmp[0], 2);
-	ft_putstr_fd(": ", 2);
+	if (co)
+	{
+		tmp = ft_split(co, ' ');
+		ft_putstr_fd(tmp[0], 2);
+		ft_putstr_fd(": ", 2);
+		free_split(tmp);
+	}
 	if (ar)
 	{
 		ft_putstr_fd(ar, 2);
 		ft_putstr_fd(": ", 2);
 	}
 	ft_putendl_fd(err, 2);
-	free_split(tmp);
 }
 
 void	free_split(char **arr)

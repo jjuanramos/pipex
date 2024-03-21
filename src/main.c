@@ -6,16 +6,11 @@
 /*   By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 12:49:59 by juramos           #+#    #+#             */
-/*   Updated: 2024/03/20 13:10:30 by juramos          ###   ########.fr       */
+/*   Updated: 2024/03/21 12:49:07 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
-
-void	leaks(void)
-{
-	system("leaks -q pipex");
-}
 
 void	exec_process(char *cmd, char **env)
 {
@@ -39,7 +34,7 @@ void	child_process(char **argv, int *p_fd, char **envp)
 	fd = open_file(argv[1], 0);
 	if (fd == -1)
 	{
-		send_to_stderr(argv[2], argv[1], strerror(errno));
+		send_to_stderr(NULL, argv[1], strerror(errno));
 		exit(1);
 	}
 	dup2(fd, 0);
@@ -77,7 +72,6 @@ int	main(int argc, char *argv[], char *envp[])
 	int		p_fd[2];
 	pid_t	pid;
 
-	atexit(leaks);
 	if (argc != 5)
 	{
 		ft_putstr_fd("./pipex ar1 co1 co2 ar2\n", 2);
