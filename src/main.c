@@ -19,6 +19,12 @@ void	exec_process(char *cmd, char **env)
 
 	cmd_s = ft_split(cmd, ' ');
 	path = get_path(cmd_s[0], env);
+	if (!path)
+	{
+		send_to_stderr(cmd_s[0], NULL, "command not found");
+		free_split(cmd_s);
+		exit(1);
+	}
 	if (execve(path, cmd_s, env) == -1)
 	{
 		send_to_stderr(cmd, NULL, strerror(errno));
@@ -53,7 +59,7 @@ void	parent_process(char **argv, int *p_fd, char **envp)
 	path = get_path(cmd_s[0], envp);
 	if (!path)
 	{
-		send_to_stderr(cmd_s[0], NULL, strerror(errno));
+		send_to_stderr(cmd_s[0], NULL, "command not found");
 		free_split(cmd_s);
 		exit(1);
 	}

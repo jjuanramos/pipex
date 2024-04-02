@@ -17,6 +17,15 @@ void	send_to_stderr(char *co, char *ar, char *err)
 	char	**tmp;
 
 	ft_putstr_fd("pipex: ", 2);
+	if (ft_strncmp(err, "command not found", 18) == 0)
+	{
+		ft_putstr_fd(err, 2);
+		ft_putstr_fd(": ", 2);
+		tmp = ft_split(co, ' ');
+		ft_putendl_fd(tmp[0], 2);
+		free_split(tmp);
+		return ;
+	}
 	if (co)
 	{
 		tmp = ft_split(co, ' ');
