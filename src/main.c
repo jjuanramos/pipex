@@ -90,7 +90,6 @@ int	main(int argc, char *argv[], char *envp[])
 		exit(1);
 	if (pid == 0)
 		child_process(argv, p_fd, envp);
-	waitpid(pid, NULL, 0);
 	parent_process(argv, p_fd, envp);
 	return (0);
 }
