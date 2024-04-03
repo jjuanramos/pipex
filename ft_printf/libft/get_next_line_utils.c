@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstsize.c                                       :+:      :+:    :+:   */
+/*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/25 14:11:10 by juramos           #+#    #+#             */
-/*   Updated: 2024/04/03 11:23:52 by juramos          ###   ########.fr       */
+/*   Created: 2023/10/24 10:35:03 by juramos           #+#    #+#             */
+/*   Updated: 2024/04/03 11:22:26 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_lstsize(t_list *lst)
+int	ft_gnl_strchr(const char *s, int c)
 {
-	size_t	len;
-
-	len = 0;
-	while (lst && ++len)
-		lst = lst->next;
-	return (len);
+	while (*s != (unsigned char)c)
+	{
+		if (!*s++)
+			return (0);
+	}
+	return (1);
 }
