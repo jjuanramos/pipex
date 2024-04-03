@@ -6,7 +6,7 @@
 /*   By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 17:30:02 by juramos           #+#    #+#             */
-/*   Updated: 2023/10/03 14:09:39 by juramos          ###   ########.fr       */
+/*   Updated: 2023/10/07 12:56:30 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,10 @@ size_t	ft_strlcat(char	*dst, const char *src, size_t n)
 	size_t	pos;
 	size_t	len;
 
+	if (n == 0)
+		return (ft_strlen(src));
+	if (n <= ft_strlen(dst))
+		return (n + ft_strlen(src));
 	pos = 0;
 	while (dst[pos] != '\0' && pos < n)
 		pos++;
@@ -31,8 +35,8 @@ int	main(int argc, char **argv)
 	int		n = ft_atoi(argv[3]);
 	int		n2;
 	
-	char b[0xF] = "nyan !";
-	ft_strlcat(((void *)0), b, 2);
+	 char b[0xF] = "nyan !";
+	 ft_strlcat(((void *)0), b, 2);
 
 	// char b2[0xF] = "nyan !";
 	// strlcat(((void *)0), b2, 2);

@@ -3,15 +3,14 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: juramos <juramos@student.42.fr>            +#+  +:+       +#+         #
+#    By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/15 16:43:25 by juramos           #+#    #+#              #
-#    Updated: 2024/02/26 13:47:48 by juramos          ###   ########.fr        #
+#    Updated: 2024/04/03 11:23:11 by juramos          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libft.a
-B_NAME = libftbonus.a
 CC = gcc
 INCLUDE = ../include
 CFLAGS = -Wall -Werror -Wextra -I
@@ -23,7 +22,8 @@ SRC = ft_isalnum.c ft_isalpha.c ft_isascii.c ft_isdigit.c \
 	ft_calloc.c ft_substr.c ft_strjoin.c ft_strtrim.c \
 	ft_putchar_fd.c ft_putstr_fd.c ft_putendl_fd.c \
 	ft_putnbr_fd.c ft_strmapi.c ft_striteri.c \
-	ft_split.c ft_itoa.c ft_putnbr_base_fd.c
+	ft_split.c ft_itoa.c ft_putnbr_base_fd.c \
+	get_next_line.c get_next_line_utils.c
 BONUS_SRC = ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstlast.c \
 	ft_lstadd_back.c ft_lstdelone.c ft_lstclear.c ft_lstiter.c ft_lstmap.c
 BONUS_OBJ = $(BONUS_SRC:.c=.o)
@@ -44,16 +44,12 @@ WHITE = \033[0;97m
 
 all: $(NAME)
 
-bonus: $(B_NAME)
+bonus: $(OBJ) $(BONUS_OBJ)
+	@ar rc $(NAME) $?
 
 $(NAME): $(OBJ)
 	@ar rcs $(NAME) $?
 	@echo "$(YELLOW)libft compiled!$(DEF_COLOR)"
-
-$(B_NAME): $(BONUS_OBJ)
-	@ar rcs $(B_NAME) $?
-	@ar rcs $(NAME) $?
-	@echo "$(YELLOW)libft bonus compiled!$(DEF_COLOR)"
 
 %.o: %.c
 	@$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
@@ -62,7 +58,7 @@ clean:
 	@rm -f $(OBJ) $(BONUS_OBJ)
 
 fclean: clean
-	@rm -f $(NAME) $(B_NAME)
+	@rm -f $(NAME)
 
 re: fclean all
 
