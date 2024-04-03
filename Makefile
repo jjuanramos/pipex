@@ -6,7 +6,7 @@
 #    By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/15 16:43:25 by juramos           #+#    #+#              #
-#    Updated: 2024/04/03 10:12:04 by juramos          ###   ########.fr        #
+#    Updated: 2024/04/03 10:23:54 by juramos          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -78,13 +78,11 @@ $(NAME): $(OBJ)
 	@$(CC) $(CFLAGS) -o $(NAME) $(OBJ) $(FT_PRINTF) $(INC)
 	@echo "$(GREEN)pipex compiled!$(DEF_COLOR)"
 
-$(BONUS_OBJ_DIR)%.o: $(BONUS__DIR)%.c | $(BONUS_OBJF)
+$(BONUS_OBJ_DIR)%.o: $(BONUS_DIR)%.c
+	@mkdir -p $(BONUS_OBJ_DIR)
 	@$(CC) $(CFLAGS) -c $< -o $@ $(INC)
 
-$(BONUS_OBJF):
-	@mkdir -p $(BONUS_OBJ_DIR)
-
-bonus: $(BONUS_NAME)
+bonus: $(FT_PRINTF) $(BONUS_NAME)
 
 $(BONUS_NAME): $(BONUS_OBJ)
 	@$(CC) $(CFLAGS) -o $(BONUS_NAME) $(BONUS_OBJ) $(FT_PRINTF) $(INC)

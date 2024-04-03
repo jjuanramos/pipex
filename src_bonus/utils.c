@@ -6,11 +6,11 @@
 /*   By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 12:17:12 by juramos           #+#    #+#             */
-/*   Updated: 2024/04/02 12:07:04 by juramos          ###   ########.fr       */
+/*   Updated: 2024/04/03 10:22:55 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "pipex_bonus.h"
 
 void	send_to_stderr(char *co, char *ar, char *err)
 {
