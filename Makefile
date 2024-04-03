@@ -6,12 +6,13 @@
 #    By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/15 16:43:25 by juramos           #+#    #+#              #
-#    Updated: 2024/03/19 12:24:15 by juramos          ###   ########.fr        #
+#    Updated: 2024/04/03 10:12:04 by juramos          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # Name
 NAME 		= 	pipex
+BONUS_NAME	=	pipex_bonus
 
 # Compiler
 CC 			= 	gcc
@@ -26,14 +27,22 @@ SRC 		=	$(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_FILES)))
 OBJ_DIR 	= 	obj/
 OBJ 		=	$(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_FILES)))
 
+# Bonus sources
+BONUS_DIR 		= 	src_bonus/
+BONUS_FILES 	= 	main utils
+BONUS_SRC 		=	$(addprefix $(BONUS_DIR), $(addsuffix .c, $(BONUS_FILES)))
+
+# Objects
+BONUS_OBJ_DIR 	= 	bonus_obj/
+BONUS_OBJ 		=	$(addprefix $(BONUS_OBJ_DIR), $(addsuffix .o, $(BONUS_FILES)))
+
 # ft_printf
 FT_PRINTF_PATH	= 	ft_printf/
 FT_PRINTF_NAME	= 	libftprintf.a
 FT_PRINTF		= 	$(FT_PRINTF_PATH)$(FT_PRINTF_NAME)
 
 # Includes
-INC			=	-I ./includes/\
-				-I ./ft_printf
+INC			=	-I ./ft_printf
 
 # Colors
 DEF_COLOR 	= 	\033[0;39m
@@ -69,16 +78,30 @@ $(NAME): $(OBJ)
 	@$(CC) $(CFLAGS) -o $(NAME) $(OBJ) $(FT_PRINTF) $(INC)
 	@echo "$(GREEN)pipex compiled!$(DEF_COLOR)"
 
+$(BONUS_OBJ_DIR)%.o: $(BONUS__DIR)%.c | $(BONUS_OBJF)
+	@$(CC) $(CFLAGS) -c $< -o $@ $(INC)
+
+$(BONUS_OBJF):
+	@mkdir -p $(BONUS_OBJ_DIR)
+
+bonus: $(BONUS_NAME)
+
+$(BONUS_NAME): $(BONUS_OBJ)
+	@$(CC) $(CFLAGS) -o $(BONUS_NAME) $(BONUS_OBJ) $(FT_PRINTF) $(INC)
+	@echo "$(GREEN)pipex bonus compiled!$(DEF_COLOR)"
+
 ft_printf:
 	@make -sC $(FT_PRINTF_PATH)
 
 clean:
 	@rm -rf $(OBJ_DIR)
+	@rm -rf $(BONUS_OBJ_DIR)
 	@make clean -sC $(FT_PRINTF_PATH)
 	@echo "$(BLUE)pipex object files cleaned!$(DEF_COLOR)"
 
 fclean: clean
 	@rm -f $(NAME)
+	@rm -f $(BONUS_NAME)
 	@make fclean -sC $(FT_PRINTF_PATH)
 	@echo "$(CYAN)pipex executable files cleaned!$(DEF_COLOR)"
 
