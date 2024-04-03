@@ -6,7 +6,7 @@
 #    By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/15 16:43:25 by juramos           #+#    #+#              #
-#    Updated: 2024/04/03 10:23:54 by juramos          ###   ########.fr        #
+#    Updated: 2024/04/03 12:56:06 by juramos          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,7 @@ OBJ 		=	$(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_FILES)))
 
 # Bonus sources
 BONUS_DIR 		= 	src_bonus/
-BONUS_FILES 	= 	main utils
+BONUS_FILES 	= 	main utils error_handlers
 BONUS_SRC 		=	$(addprefix $(BONUS_DIR), $(addsuffix .c, $(BONUS_FILES)))
 
 # Objects

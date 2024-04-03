@@ -6,40 +6,11 @@
 /*   By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 12:17:12 by juramos           #+#    #+#             */
-/*   Updated: 2024/04/03 10:22:55 by juramos          ###   ########.fr       */
+/*   Updated: 2024/04/03 12:54:49 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex_bonus.h"
-
-void	send_to_stderr(char *co, char *ar, char *err)
-{
-	char	**tmp;
-
-	ft_putstr_fd("pipex: ", 2);
-	if (ft_strncmp(err, "command not found", 18) == 0)
-	{
-		ft_putstr_fd(err, 2);
-		ft_putstr_fd(": ", 2);
-		tmp = ft_split(co, ' ');
-		ft_putendl_fd(tmp[0], 2);
-		free_split(tmp);
-		return ;
-	}
-	if (co)
-	{
-		tmp = ft_split(co, ' ');
-		ft_putstr_fd(tmp[0], 2);
-		ft_putstr_fd(": ", 2);
-		free_split(tmp);
-	}
-	if (ar)
-	{
-		ft_putstr_fd(ar, 2);
-		ft_putstr_fd(": ", 2);
-	}
-	ft_putendl_fd(err, 2);
-}
 
 void	free_split(char **arr)
 {
@@ -59,6 +30,8 @@ int	open_file(char *name, int to_write)
 		ret = open(name, O_RDONLY, 0777);
 	if (to_write == 1)
 		ret = open(name, O_WRONLY | O_CREAT | O_TRUNC, 0777);
+	if (to_write == 2)
+		ret = open(name, O_WRONLY | O_CREAT | O_APPEND, 0777);
 	if (ret == -1)
 		exit(0);
 	return (ret);
