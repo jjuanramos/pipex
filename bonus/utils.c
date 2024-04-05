@@ -6,7 +6,7 @@
 /*   By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 12:17:12 by juramos           #+#    #+#             */
-/*   Updated: 2024/04/03 13:51:24 by juramos          ###   ########.fr       */
+/*   Updated: 2024/04/03 16:28:43 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ int	open_file(char *name, int to_write)
 		ret = open(name, O_RDONLY, 0777);
 	if (to_write == 1)
 		ret = open(name, O_WRONLY | O_CREAT | O_TRUNC, 0777);
+	if (to_write == 2)
+		ret = open(name, O_WRONLY | O_CREAT | O_APPEND, 0777);
 	if (ret == -1)
 		exit(0);
 	return (ret);
