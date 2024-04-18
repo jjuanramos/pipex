@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+        */
+/*   By: juramos <juramos@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 10:35:27 by juramos           #+#    #+#             */
-/*   Updated: 2024/03/20 12:13:16 by juramos          ###   ########.fr       */
+/*   Updated: 2024/04/18 13:52:59 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,8 @@ void	send_to_stderr(char *co, char *ar, char *err);
 void	free_split(char **arr);
 int		open_file(char *name, int to_write);
 char	*get_path(char *cmd, char **env);
+
+/* ft_split_mod */
+char	**ft_split_mod(char const *s, char c);
 
 #endif
