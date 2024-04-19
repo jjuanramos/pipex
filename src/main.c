@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juramos <juramos@student.42.fr>            +#+  +:+       +#+        */
+/*   By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/23 12:49:59 by juramos           #+#    #+#             */
-/*   Updated: 2024/04/11 14:14:08 by juramos          ###   ########.fr       */
+/*   Created: Invalid date        by                   #+#    #+#             */
+/*   Updated: 2024/04/19 12:56:28 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "pipex.h"
 
@@ -17,7 +18,8 @@ void	exec_process(char *cmd, char **env)
 	char	**cmd_s;
 	char	*path;
 
-	cmd_s = ft_split(cmd, ' ');
+	printf("cmd is %s\n", cmd);
+	cmd_s = ft_split_mod(cmd, ' ');
 	path = get_path(cmd_s[0], env);
 	if (!path)
 	{
