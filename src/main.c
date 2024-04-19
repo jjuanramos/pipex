@@ -6,7 +6,7 @@
 /*   By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/04/19 12:56:28 by juramos          ###   ########.fr       */
+/*   Updated: 2024/04/19 13:15:10 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ void	exec_process(char *cmd, char **env)
 	char	**cmd_s;
 	char	*path;
 
-	printf("cmd is %s\n", cmd);
 	cmd_s = ft_split_mod(cmd, ' ');
 	path = get_path(cmd_s[0], env);
 	if (!path)

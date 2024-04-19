@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split_mod.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juramos <juramos@student.42.fr>            +#+  +:+       +#+        */
+/*   By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 17:21:01 by juramos           #+#    #+#             */
-/*   Updated: 2024/04/18 14:20:01 by juramos          ###   ########.fr       */
+/*   Updated: 2024/04/19 13:15:38 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,24 +42,23 @@ static char	**free_split_mod(char **ret, size_t ret_slice)
 	return (0);
 }
 
-int	add_to_ret(char **ret, size_t *ret_slice, char const *s)
+int	add_to_ret(char **ret, size_t *ret_slice, char const **s)
 {
 	size_t	start;
 
 	start = 0;
-	while (*s != ' ' && *s && ++start)
+	while (**s != ' ' && **s && ++start)
 	{
-		if (*s == '\'')
+		if (**s == '\'')
 		{
-			s++;
-			while (*s != '\'' && *s && ++start)
-				s++;
+			(*s)++;
+			while (**s != '\'' && **s && ++start)
+				(*s)++;
 		}
 		else
-			s++;
+			(*s)++;
 	}
-	ret[(*ret_slice)++] = ft_substr(s - start, 0, start);
-	printf("for slice %zu ret is %s\n", *ret_slice, ret[*ret_slice]);
+	ret[(*ret_slice)++] = ft_substr(*s - start, 0, start);
 	if (!ret[*ret_slice - 1])
 	{
 		free_split_mod(ret, *ret_slice);
@@ -81,7 +80,7 @@ char	**ft_split_mod(char const *s, char c)
 	{
 		if (*s != c)
 		{
-			if (add_to_ret(ret, &ret_slice, s))
+			if (add_to_ret(ret, &ret_slice, &s))
 				return (NULL);
 		}
 		else
