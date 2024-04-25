@@ -3,13 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+        */
+/*   By: juramos <juramos@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/04/19 13:15:10 by juramos          ###   ########.fr       */
+/*   Created: 2024/04/25 12:51:30 by juramos           #+#    #+#             */
+/*   Updated: 2024/04/25 12:51:30 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "pipex.h"
 
