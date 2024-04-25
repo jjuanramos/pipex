@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split_mod.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+        */
+/*   By: juramos <juramos@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 17:21:01 by juramos           #+#    #+#             */
-/*   Updated: 2024/04/19 13:15:38 by juramos          ###   ########.fr       */
+/*   Updated: 2024/04/25 12:37:51 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ static char	**free_split_mod(char **ret, size_t ret_slice)
 int	add_to_ret(char **ret, size_t *ret_slice, char const **s)
 {
 	size_t	start;
+	char	*helper;
 
 	start = 0;
 	while (**s != ' ' && **s && ++start)
@@ -58,7 +59,9 @@ int	add_to_ret(char **ret, size_t *ret_slice, char const **s)
 		else
 			(*s)++;
 	}
-	ret[(*ret_slice)++] = ft_substr(*s - start, 0, start);
+	helper = ft_substr(*s - start, 0, start);
+	ret[(*ret_slice)++] = ft_strtrim(helper, "\'");
+	free(helper);
 	if (!ret[*ret_slice - 1])
 	{
 		free_split_mod(ret, *ret_slice);
