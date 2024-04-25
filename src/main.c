@@ -5,10 +5,11 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/23 12:49:59 by juramos           #+#    #+#             */
-/*   Updated: 2024/03/21 12:49:07 by juramos          ###   ########.fr       */
+/*   Created: Invalid date        by                   #+#    #+#             */
+/*   Updated: 2024/04/19 13:15:10 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "pipex.h"
 
@@ -17,7 +18,7 @@ void	exec_process(char *cmd, char **env)
 	char	**cmd_s;
 	char	*path;
 
-	cmd_s = ft_split(cmd, ' ');
+	cmd_s = ft_split_mod(cmd, ' ');
 	path = get_path(cmd_s[0], env);
 	if (!path)
 	{
@@ -66,7 +67,10 @@ void	parent_process(char **argv, int *p_fd, char **envp)
 	free_split(cmd_s);
 	fd = open_file(argv[4], 1);
 	if (fd == -1)
+	{
+		send_to_stderr(NULL, argv[1], strerror(errno));
 		exit(1);
+	}
 	dup2(fd, 1);
 	dup2(p_fd[0], 0);
 	close(p_fd[1]);
